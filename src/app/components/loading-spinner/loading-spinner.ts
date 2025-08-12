@@ -1,52 +1,35 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { LoadingService } from '../../services/loading';
+import { loadingSpinner } from '../../animations/weather.animations';
 
 @Component({
   selector: 'app-loading-spinner',
   standalone: true,
   imports: [CommonModule],
+  animations: [loadingSpinner],
   template: `
     @if (loadingService.loading()) {
-    <div class="loading-overlay">
-      <div class="spinner"></div>
+    <div class="loading-overlay" @loadingSpinner>
+      <div class="spinner-container">
+        <div class="weather-spinner">
+          <div class="cloud">
+            <div class="cloud-part cloud-part-1"></div>
+            <div class="cloud-part cloud-part-2"></div>
+            <div class="cloud-part cloud-part-3"></div>
+          </div>
+          <div class="rain">
+            <div class="drop drop-1"></div>
+            <div class="drop drop-2"></div>
+            <div class="drop drop-3"></div>
+          </div>
+        </div>
+        <p class="loading-text">Loading weather data...</p>
+      </div>
     </div>
     }
   `,
-  styles: [
-    `
-      .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
-
-      .spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid #f3f3f3;
-        border-top: 5px solid #3498db;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    `,
-  ],
+  styleUrl: './loading-spinner.scss'
 })
 export class LoadingSpinner {
   protected loadingService = inject(LoadingService);

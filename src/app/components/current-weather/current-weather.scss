@@ -86,4 +86,125 @@
 .relative.z-10 {
     position: relative;
     z-index: 10;
+}/* En
+hanced weather card effects */
+.weather-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.weather-card:hover::before {
+  left: 100%;
+}
+
+/* Temperature animation */
+.temperature {
+  animation: temperature-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes temperature-glow {
+  from {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* Weather icon hover effect */
+.weather-icon {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.weather-icon:hover {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Location pin animation */
+.location-pin {
+  animation: pin-bounce 2s ease-in-out infinite;
+}
+
+@keyframes pin-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Enhanced night sky effects */
+.night-sky {
+  background-attachment: fixed;
+}
+
+.night-sky::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Shooting star animation */
+.night-sky .shooting-star {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: shooting-star 3s linear infinite;
+  opacity: 0;
+}
+
+@keyframes shooting-star {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-200px) translateY(100px);
+  }
+}
+
+/* Add shooting star element */
+.night-sky::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: shooting-star 4s linear infinite;
+  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8);
+  z-index: 8;
 }

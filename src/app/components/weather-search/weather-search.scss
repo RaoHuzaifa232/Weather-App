@@ -1,0 +1,101 @@
+/* Weather search specific styles */
+.search-container {
+  position: relative;
+}
+
+/* Enhanced input styles */
+input[type="text"] {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+input[type="text"]:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(43, 140, 238, 0.15);
+}
+
+/* Search button animations */
+.search-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.search-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.search-button:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+/* Status indicator */
+.status-indicator {
+  position: relative;
+}
+
+.status-indicator::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  background: #10B981;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+/* Loading state for search */
+.searching {
+  position: relative;
+}
+
+.searching input {
+  background: linear-gradient(90deg, #f0f9ff, #e0f2fe, #f0f9ff);
+  background-size: 200% 100%;
+  animation: searching-gradient 1.5s ease-in-out infinite;
+}
+
+@keyframes searching-gradient {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .search-form {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .search-button {
+    width: 100%;
+    height: 48px;
+  }
+}

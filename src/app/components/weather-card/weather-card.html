@@ -1,14 +1,20 @@
-<div class="p-4 bg-[#FCFEFF] border border-white/20 rounded-lg shadow-md text-white">
-    <div class="flex items-center justify-between text-gray-900">
-        <div class="text-gray-900">
-            <p class="text-sm text-[#738399]">{{ title }}</p>
-            <p class="text-xl font-semibold text-[#1D2530]">
+<div class="weather-card p-5 bg-white/80 backdrop-blur-sm border border-white/30 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-101 transition-all duration-300 cursor-pointer group"
+     @fadeInScale
+     [@pulseAnimation]="isHovered ? 'pulsed' : 'normal'"
+     (mouseenter)="isHovered = true"
+     (mouseleave)="isHovered = false">
+    <div class="flex items-center justify-between">
+        <div class="space-y-1">
+            <p class="text-sm text-[#738399] font-medium">{{ title }}</p>
+            <p class="value-text text-2xl font-bold text-[#1D2530] group-hover:text-[#2B8CEE] transition-colors duration-300">
                 {{ value }}
                 @if (unit) {
-                <span>{{ unit }}</span>
+                <span class="text-lg">{{ unit }}</span>
                 }
             </p>
         </div>
-        <lucide-icon [name]="icon" class="text-[#69AEF2] w-6 h-6" />
+        <div class="icon-container p-3 bg-gradient-to-br from-[#2B8CEE]/10 to-[#3F97EF]/10 rounded-lg group-hover:from-[#2B8CEE]/20 group-hover:to-[#3F97EF]/20 transition-all duration-300">
+            <lucide-icon [name]="icon" class="text-[#2B8CEE] w-6 h-6 group-hover:scale-101 transition-transform duration-300" />
+        </div>
     </div>
 </div>

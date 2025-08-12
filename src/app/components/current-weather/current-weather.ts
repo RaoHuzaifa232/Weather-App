@@ -2,10 +2,12 @@ import { Component, computed, inject } from '@angular/core';
 import { WeatherData } from '../../models/weather.model';
 import { Weather } from '../../services/weather';
 import { CommonModule } from '@angular/common';
+import { weatherCardAnimation, fadeInScale } from '../../animations/weather.animations';
 
 @Component({
   selector: 'app-current-weather',
   imports: [CommonModule],
+  animations: [weatherCardAnimation, fadeInScale],
   templateUrl: './current-weather.html',
   styleUrl: './current-weather.scss'
 })

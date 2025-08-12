@@ -7,10 +7,12 @@ import {
 import { FormsModule } from '@angular/forms';
 import { LucideAngularModule, MapPin, Search } from 'lucide-angular';
 import { Weather } from '../../services/weather';
+import { fadeInUp, searchAnimation } from '../../animations/weather.animations';
 
 @Component({
   selector: 'app-weather-search',
   imports: [FormsModule, LucideAngularModule],
+  animations: [fadeInUp, searchAnimation],
   templateUrl: './weather-search.html',
   styleUrl: './weather-search.scss',
 })
@@ -22,6 +24,7 @@ export class WeatherSearch implements OnInit {
   Search = Search;
   MapPin = MapPin;
   searchQuery: string = '';
+  isSearching: boolean = false;
 
   ngOnInit(): void {
     this.searchQuery = 'London';
@@ -32,14 +35,19 @@ export class WeatherSearch implements OnInit {
     event.preventDefault();
     const trimmed = this.searchQuery.trim();
     if (trimmed) {
+      this.isSearching = true;
       this._weatherService.getWeatherData(trimmed).subscribe({
         next: (res: any) => {
           this._weatherService.weatherData.set(res);
           this.currentLocation = `${res.location.name}, ${res.location.region}`;
+          this.isSearching = false;
           this._cdr.markForCheck();
           this.searchQuery = '';
         },
-        error: (err) => { },
+        error: (err) => { 
+          this.isSearching = false;
+          this._cdr.markForCheck();
+        },
       });
     }
   }

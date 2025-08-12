@@ -10,10 +10,12 @@ import {
 } from 'lucide-angular';
 import { Weather } from '../../services/weather';
 import { WeatherCard } from '../weather-card/weather-card';
+import { fadeInUp } from '../../animations/weather.animations';
 
 @Component({
   selector: 'app-weather-details',
   imports: [WeatherCard],
+  animations: [fadeInUp],
   templateUrl: './weather-details.html',
   styleUrls: ['./weather-details.scss'],
 })

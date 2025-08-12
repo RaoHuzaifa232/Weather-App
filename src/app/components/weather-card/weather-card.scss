@@ -1,0 +1,117 @@
+/* Weather card specific styles */
+.weather-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover glow effect */
+.weather-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(43, 140, 238, 0.1), rgba(63, 151, 239, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.weather-card:hover::before {
+  opacity: 1;
+}
+
+/* Icon container animations */
+.icon-container {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.icon-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(43, 140, 238, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.weather-card:hover .icon-container::after {
+  width: 60px;
+  height: 60px;
+}
+
+/* Value animation */
+.value-text {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.weather-card:hover .value-text {
+  transform: scale(1.05);
+}
+
+/* Ripple effect on click */
+.weather-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(43, 140, 238, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.weather-card:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Loading state */
+.weather-card.loading {
+  pointer-events: none;
+}
+
+.weather-card.loading .value-text {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+  color: transparent;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .weather-card {
+    padding: 1rem;
+  }
+  
+  .value-text {
+    font-size: 1.25rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .weather-card {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .weather-card:hover {
+    background: rgba(30, 41, 59, 0.9);
+  }
+}
